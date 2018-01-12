@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Net.SDS.HealthCheck.API</id>
+    <version>0.1.0</version>
+    <authors>Andrey Goncharov</authors>
+    <owners>SpbEngineersTeam</owners>
+    <licenseUrl>https://github.com/SpbEngineersTeam/Net.SDS/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SpbEngineersTeam/Net.SDS</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/35262016?s=200</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package contains HeathCheckController wich have to be added to a service project for SDS. Service must be ASP.NET Core app.</description>    
+    <copyright>Copyright 2018 SpbEngineersTeam</copyright>
+    <tags>HeathCheckController ASP.NET Core</tags>
+    <contentFiles>        
+        <files include="cs/**/*.*" buildAction="Compile" />
+    </contentFiles>    
+  </metadata>
+
+  <files>
+    <file src="*.cs" target="contentFiles/cs/any/Controllers" />
+  </files>
+</package>
