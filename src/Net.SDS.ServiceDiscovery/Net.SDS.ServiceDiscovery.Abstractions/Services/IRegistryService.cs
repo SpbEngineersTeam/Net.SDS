@@ -1,12 +1,12 @@
 ﻿using System;
-using Net.SDS.ServiceRegistry.Abstractions.Dto;
+using Net.SDS.ServiceDiscovery.Abstractions.Dto;
 
-namespace Net.SDS.ServiceRegistry.Abstractions.Services
+namespace Net.SDS.ServiceDiscovery.Abstractions.Services
 {
     public interface IRegistryService
     {
-        Uri[] GetAvailabeInstances(Guid serviceId, string version);
-        void AddAvailabeInstance(Guid serviceId, string version, ServiceInfoDto serviceInfo);
-        void DeleteInstances(Guid serviceId, string version, string url);
+        string[] GetAvailabelInstances(Guid serviceId, string version);
+        ServiceInstanceDto AddInstance(Guid serviceId, string version, ServiceInstanceDto serviceInstance);
+        ServiceInstanceDto DeleteInstances(Guid serviceId, string version, string url);
     }
 }

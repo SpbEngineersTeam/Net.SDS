@@ -7,8 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Autofac.Extensions.DependencyInjection;
 
-namespace Net.SDS.ServiceRegistry
+namespace Net.SDS.ServiceDiscovery
 {
     public class Program
     {
@@ -19,7 +20,8 @@ namespace Net.SDS.ServiceRegistry
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                   .ConfigureServices(services => services.AddAutofac())
+                   .UseStartup<Startup>()
+                   .Build();
     }
 }

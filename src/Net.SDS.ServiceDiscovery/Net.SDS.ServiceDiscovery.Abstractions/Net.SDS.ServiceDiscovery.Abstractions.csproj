@@ -7,14 +7,18 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
     <Compile Remove="Repositories\IServiceRepository %28копировать%29.cs" />
+    <Compile Remove="Repositories\IServiceRepository.cs" />
+    <Compile Remove="Entities\ServiceEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Repositories\" />
     <Folder Include="Entities\" />
     <Folder Include="Dto\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove=".DS_Store" />
+    <None Remove="Repositories\.DS_Store" />
   </ItemGroup>
 </Project>

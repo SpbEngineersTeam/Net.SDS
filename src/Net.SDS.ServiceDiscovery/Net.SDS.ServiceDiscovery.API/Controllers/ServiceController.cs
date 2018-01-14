@@ -1,46 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Net.SDS.ServiceRegistry.Abstractions.Dto;
-using Net.SDS.ServiceRegistry.Abstractions.Services;
+using Net.SDS.ServiceDiscovery.Abstractions.Dto;
+using Net.SDS.ServiceDiscovery.Abstractions.Services;
 
-namespace Net.SDS.ServiceRegistry.API.Controllers
+namespace Net.SDS.ServiceDiscovery.API.Controllers
 {
     [Route("api/[controller]")]
     public class ServiceController : Controller
     {
         private readonly IRegistryService _registryService;
-
-    
+        public ServiceController(IRegistryService registryService)
+        {
+            _registryService = registryService;
+        }
 
         [HttpGet("{serviceId:guid}/{version}/url")]
         [Produces(typeof(Uri[]))]
-        public IActionResult Get(Guid serviceId, string version)
+        public IActionResult GetUrls(Guid serviceId, string version)
         {
-            var instances = _registryService.GetAvailabeInstances(serviceId, version);
+            var urls = _registryService.GetAvailabelInstances(serviceId, version);
 
-            return instances == null ? (IActionResult) NotFound() : Ok(instances);
+            return urls == null
+                ? NotFound($"No services with serviceId {serviceId} and version {version}")
+                    : (IActionResult)Ok(urls);
         }
 
         [HttpPut("{serviceId:guid}/{version}")]
-        public void Put(Guid serviceId, string version, 
-                        [FromBody]ServiceInfoDto serviceInfo)
+        public IActionResult Put(Guid serviceId, string version, [FromBody] ServiceInstanceDto info)
         {
-            _registryService.AddAvailabeInstance(serviceId, version, serviceInfo);
+            var added = _registryService.AddInstance(serviceId, version, info);
+
+            return CreatedAtAction(nameof(GetUrls), added);
         }
 
-        [HttpDelete("{serviceId:guid}/{version}")]
-        public void Delete(Guid serviceId, string version)
+        [HttpDelete("{serviceId:guid}/{version}/{url}")]
+        public IActionResult Delete(Guid serviceId, string version, string url)
         {
-            var c = HttpContext.Connection.RemoteIpAddress.;
-            _registryService.DeleteInstances(serviceId, version, string.Empty);
-        }
+            var deleted = _registryService.DeleteInstances(serviceId, version, url);
 
-        [HttpGet]
-        public string Get(){
-            var c = HttpContext.Connection;
-            return string.Empty;
+            return deleted == null 
+                ? NotFound($"No services with serviceId {serviceId}, version {version} and url {url}")
+                :(IActionResult) Ok(deleted);
         }
     }
 }

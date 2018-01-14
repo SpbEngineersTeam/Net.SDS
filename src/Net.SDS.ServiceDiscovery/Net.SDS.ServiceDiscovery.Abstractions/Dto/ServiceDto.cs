@@ -1,10 +1,9 @@
 ﻿using System;
-namespace Net.SDS.ServiceRegistry.Abstractions.Dto
+namespace Net.SDS.ServiceDiscovery.Abstractions.Dto
 {
     public class ServiceDto
     {
-        public ServiceDto()
-        {
-        }
+        public Guid ServiceId { get; set; }
+        public string[] Instances { get; set; }
     }
 }

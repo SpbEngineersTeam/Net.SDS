@@ -1,10 +1,10 @@
 ﻿using System;
-namespace Net.SDS.ServiceRegistry.Abstractions.Entities
+namespace Net.SDS.ServiceDiscovery.Abstractions.Entities
 {
     public class ServiceInstanceEntity
     {
-        public ServiceInstanceEntity()
-        {
-        }
+        public Guid ServiceId { get; set; }
+        public string Version { get; set; }
+        public string Uri { get; set; }//TODO: string -> Uri?
     }
 }
