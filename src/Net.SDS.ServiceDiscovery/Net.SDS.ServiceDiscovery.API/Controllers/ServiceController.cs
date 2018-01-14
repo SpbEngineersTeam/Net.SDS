@@ -33,7 +33,7 @@ namespace Net.SDS.ServiceRegistry.API.Controllers
         [HttpDelete("{serviceId:guid}/{version}")]
         public void Delete(Guid serviceId, string version)
         {
-            var c = HttpContext.Connection;
+            var c = HttpContext.Connection.RemoteIpAddress.;
             _registryService.DeleteInstances(serviceId, version, string.Empty);
         }
 
