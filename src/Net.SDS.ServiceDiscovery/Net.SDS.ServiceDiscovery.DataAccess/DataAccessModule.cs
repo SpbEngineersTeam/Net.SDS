@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Net.SDS.ServiceDiscovery.DataAccess;
 using Net.SDS.ServiceDiscovery.Abstractions.Repositories;
-using Net.SDS.ServiceDiscovery.Abstractions.Services;
 
 namespace Net.SDS.ServiceDiscovery.Registry
 {

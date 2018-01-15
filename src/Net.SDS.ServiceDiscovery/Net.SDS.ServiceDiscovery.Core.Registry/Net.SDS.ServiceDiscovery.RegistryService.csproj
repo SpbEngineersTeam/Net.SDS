@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.SDS.ServiceDiscovery.Abstractions\Net.SDS.ServiceDiscovery.Abstractions.csproj" />
-    <ProjectReference Include="..\Net.SDS.ServiceDiscovery.DataAccess\Net.SDS.ServiceDiscovery.DataAccess.Abstractions\Net.SDS.ServiceDiscovery.DataAccess.Abstractions.csproj" />
+    <PackageReference Include="Autofac" Version="4.6.2" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.6.2" />
+    <ProjectReference Include="..\Net.SDS.ServiceDiscovery.Core.Abstractions\Net.SDS.ServiceDiscovery.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.SDS.ServiceDiscovery.DataAccess.Abstractions\Net.SDS.ServiceDiscovery.DataAccess.Abstractions.csproj" />
   </ItemGroup>
 </Project>

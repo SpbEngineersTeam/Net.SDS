@@ -1,9 +1,9 @@
 ﻿using System;
 using Net.SDS.ServiceDiscovery.Abstractions;
 using Net.SDS.ServiceDiscovery.Abstractions.Dto;
-using Net.SDS.ServiceDiscovery.Abstractions.Services;
-using Net.SDS.ServiceDiscovery.Abstractions.Repositories;
 using Net.SDS.ServiceDiscovery.Abstractions.Entities;
+using Net.SDS.ServiceDiscovery.Abstractions.Repositories;
+using Net.SDS.ServiceDiscovery.Abstractions.Services;
 
 namespace Net.SDS.ServiceDiscovery.Registry
 {
