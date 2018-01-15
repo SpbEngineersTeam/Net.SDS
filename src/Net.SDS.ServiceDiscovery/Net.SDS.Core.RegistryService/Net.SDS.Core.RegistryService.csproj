@@ -8,6 +8,7 @@
     <PackageReference Include="Autofac" Version="4.6.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Net.SDS.ServiceDiscovery.DataAccess.Abstractions\Net.SDS.ServiceDiscovery.DataAccess.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.SDS.Core.Abstractions\Net.SDS.Core.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.SDS.DataAccess.Abstractions\Net.SDS.DataAccess.Abstractions.csproj" />
   </ItemGroup>
 </Project>

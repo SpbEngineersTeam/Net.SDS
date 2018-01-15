@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4FD21A08-08FB-41F3-BE53-2A2339E1443D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.API", "Net.SDS.ServiceDiscovery.API\Net.SDS.ServiceDiscovery.API.csproj", "{07054336-89D2-4571-9129-62C6D0387381}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.API", "Net.SDS.API\Net.SDS.API.csproj", "{07054336-89D2-4571-9129-62C6D0387381}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.DataAccess", "Net.SDS.ServiceDiscovery.DataAccess\Net.SDS.ServiceDiscovery.DataAccess.csproj", "{36B0FFDB-CDBB-4258-898A-736CFB7FE6E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.DataAccess", "Net.SDS.DataAccess\Net.SDS.DataAccess.csproj", "{36B0FFDB-CDBB-4258-898A-736CFB7FE6E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.DataAccess.Abstractions", "Net.SDS.ServiceDiscovery.DataAccess.Abstractions\Net.SDS.ServiceDiscovery.DataAccess.Abstractions.csproj", "{35E31116-027F-444A-AC06-1D0CD4685BD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.DataAccess.Abstractions", "Net.SDS.DataAccess.Abstractions\Net.SDS.DataAccess.Abstractions.csproj", "{35E31116-027F-444A-AC06-1D0CD4685BD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.RegistryService", "Net.SDS.ServiceDiscovery.Core.Registry\Net.SDS.ServiceDiscovery.RegistryService.csproj", "{75948931-6194-4BA0-8F31-72A0D04622B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.Core.RegistryService", "Net.SDS.Core.RegistryService\Net.SDS.Core.RegistryService.csproj", "{75948931-6194-4BA0-8F31-72A0D04622B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.Abstractions", "Net.SDS.ServiceDiscovery.Core.Abstractions\Net.SDS.ServiceDiscovery.Abstractions.csproj", "{952836B9-5929-4B9F-B38A-E6F1C4B6F3E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.Core.Abstractions", "Net.SDS.Core.Abstractions\Net.SDS.Core.Abstractions.csproj", "{952836B9-5929-4B9F-B38A-E6F1C4B6F3E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
