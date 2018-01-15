@@ -5,11 +5,17 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.API", "Net.SDS.ServiceDiscovery.API\Net.SDS.ServiceDiscovery.API.csproj", "{D611E9FF-B998-4301-96C1-BA2D41C46C17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.Abstractions", "Net.SDS.ServiceDiscovery.Abstractions\Net.SDS.ServiceDiscovery.Abstractions.csproj", "{26070E54-D633-4474-A2B5-30481BCCEFC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.Abstractions", "Net.SDS.ServiceDiscovery.Core.Abstractions\Net.SDS.ServiceDiscovery.Abstractions.csproj", "{26070E54-D633-4474-A2B5-30481BCCEFC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.DataAccess", "Net.SDS.ServiceDiscovery.DataAccess\Net.SDS.ServiceDiscovery.DataAccess.csproj", "{51584158-326B-4AAC-9808-FABA9D705320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.RegistryService", "Net.SDS.ServiceDiscovery.Registry\Net.SDS.ServiceDiscovery.RegistryService.csproj", "{2F2C86A9-2625-48E8-A52C-7EBD2F15EAFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.RegistryService", "Net.SDS.ServiceDiscovery.Core.Registry\Net.SDS.ServiceDiscovery.RegistryService.csproj", "{2F2C86A9-2625-48E8-A52C-7EBD2F15EAFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{C1F6BBCC-021D-451A-B72C-A994DD7DE23F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7362B29D-C534-4AEE-A0E0-55E1C5103AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.SDS.ServiceDiscovery.DataAccess.Abstractions", "Net.SDS.ServiceDiscovery.DataAccess.Abstractions\Net.SDS.ServiceDiscovery.DataAccess.Abstractions.csproj", "{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,5 +78,23 @@ Global
 		{2F2C86A9-2625-48E8-A52C-7EBD2F15EAFF}.Release|x64.Build.0 = Release|Any CPU
 		{2F2C86A9-2625-48E8-A52C-7EBD2F15EAFF}.Release|x86.ActiveCfg = Release|Any CPU
 		{2F2C86A9-2625-48E8-A52C-7EBD2F15EAFF}.Release|x86.Build.0 = Release|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Debug|x64.Build.0 = Debug|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Debug|x86.Build.0 = Debug|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Release|x64.ActiveCfg = Release|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Release|x64.Build.0 = Release|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Release|x86.ActiveCfg = Release|Any CPU
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{51584158-326B-4AAC-9808-FABA9D705320} = {C1F6BBCC-021D-451A-B72C-A994DD7DE23F}
+		{2F2C86A9-2625-48E8-A52C-7EBD2F15EAFF} = {7362B29D-C534-4AEE-A0E0-55E1C5103AD1}
+		{0D7FEC56-53F3-4C6F-9957-8B0D1E5A8B2D} = {C1F6BBCC-021D-451A-B72C-A994DD7DE23F}
+		{26070E54-D633-4474-A2B5-30481BCCEFC0} = {7362B29D-C534-4AEE-A0E0-55E1C5103AD1}
 	EndGlobalSection
 EndGlobal
