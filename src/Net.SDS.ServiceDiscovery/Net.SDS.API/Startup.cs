@@ -5,9 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Net.SDS.CompositionRoot;
-using Net.SDS.ServiceDiscovery.API;
 
-namespace Net.SDS.ServiceDiscovery
+namespace Net.SDS.ServiceDiscovery.API
 {
     public class Startup
     {
