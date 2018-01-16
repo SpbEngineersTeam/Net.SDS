@@ -2,7 +2,7 @@
 using Net.SDS.ServiceDiscovery.DataAccess;
 using Net.SDS.ServiceDiscovery.Abstractions.Repositories;
 
-namespace Net.SDS.ServiceDiscovery.Registry
+namespace Net.SDS.ServiceDiscovery.DataAccess
 {
     public class DataAccessModule : Module
     {

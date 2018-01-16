@@ -23,8 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Net.SDS.Core.Abstractions\Net.SDS.Core.Abstractions.csproj" />
-    <ProjectReference Include="..\Net.SDS.Core.RegistryService\Net.SDS.Core.RegistryService.csproj" />
-    <ProjectReference Include="..\Net.SDS.DataAccess\Net.SDS.DataAccess.csproj" />
-    <ProjectReference Include="..\Net.SDS.DataAccess.Abstractions\Net.SDS.DataAccess.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.SDS.CompositionRoot\Net.SDS.CompositionRoot.csproj" />
   </ItemGroup>
 </Project>
