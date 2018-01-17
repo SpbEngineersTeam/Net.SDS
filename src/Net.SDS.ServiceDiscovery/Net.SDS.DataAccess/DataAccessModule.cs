@@ -5,7 +5,7 @@ namespace Net.SDS.ServiceDiscovery.DataAccess
 {
     public class DataAccessModule : Module
     {
-        public bool InMemoryStub { get; set; }
+        public bool InMemoryStub { get; set; } //TODO: later unnecessary
 
         protected override void Load(ContainerBuilder builder)
         {
@@ -35,5 +35,4 @@ namespace Net.SDS.ServiceDiscovery.DataAccess
                    .SingleInstance();
         }
     }
-
 }
