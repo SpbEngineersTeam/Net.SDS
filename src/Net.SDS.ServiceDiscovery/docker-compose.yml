@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  net.sds.api:
+    image: net.sds.api
+    build:
+      context: ./Net.SDS.API
+      dockerfile: Dockerfile
