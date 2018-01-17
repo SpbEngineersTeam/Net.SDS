@@ -8,8 +8,8 @@ namespace Net.SDS.CompositionRoot
     {
         public static void ConfigureContainer(this ContainerBuilder builder)
         {
-            builder.RegisterModule<RegistryServiceModule>();
-            builder.RegisterModule<DataAccessInMemoryStubModule>();
+            builder.RegisterModule(new RegistryServiceModule());
+            builder.RegisterModule(new DataAccessModule { InMemoryStub = true });
         }
     }
 }
