@@ -6,7 +6,7 @@ using Net.SDS.ServiceDiscovery.Abstractions.Repositories;
 
 namespace Net.SDS.ServiceDiscovery.DataAccess
 {
-    public class ServiceInstanceRepositoryInMemoryStub : IServiceInstanceRepository
+    internal class ServiceInstanceRepository : IServiceInstanceRepository
     {
         List<ServiceInstanceEntity> _storage = new List<ServiceInstanceEntity>();
 

@@ -5,6 +5,6 @@ namespace Net.SDS.ServiceDiscovery.Abstractions.Entities
     {
         public Guid ServiceId { get; set; }
         public string Version { get; set; }
-        public string Uri { get; set; }//TODO: string -> Uri?
+        public string Uri { get; set; }//TODO: string -> System.Uri?
     }
 }

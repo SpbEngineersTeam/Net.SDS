@@ -9,7 +9,7 @@ namespace Net.SDS.CompositionRoot
         public static void ConfigureContainer(this ContainerBuilder builder)
         {
             builder.RegisterModule<RegistryServiceModule>();
-            builder.RegisterModule<DataAccessModule>();
+            builder.RegisterModule<DataAccessInMemoryStubModule>();
         }
     }
 }
