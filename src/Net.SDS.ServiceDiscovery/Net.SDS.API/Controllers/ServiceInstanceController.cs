@@ -5,17 +5,17 @@ using Net.SDS.ServiceDiscovery.Abstractions.Services;
 
 namespace Net.SDS.ServiceDiscovery.API.Controllers
 {
-    [Route("api/[controller]")]
-    public class ServiceController : Controller
+    [Route("api/service-instance")]
+    public class ServiceInstanceController : Controller
     {
         private readonly IRegistryService _registryService;
-        public ServiceController(IRegistryService registryService)
+        public ServiceInstanceController(IRegistryService registryService)
         {
             _registryService = registryService;
         }
 
         [HttpGet("{serviceId:guid}/{version}/url")]
-        [Produces(typeof(Uri[]))]
+        [Produces(typeof(string[]))]
         public IActionResult GetUrls(Guid serviceId, string version)
         {
             var urls = _registryService.GetAvailabelInstances(serviceId, version);
@@ -26,6 +26,7 @@ namespace Net.SDS.ServiceDiscovery.API.Controllers
         }
 
         [HttpPut("{serviceId:guid}/{version}")]
+        [Produces(typeof(ServiceInstanceDto))]
         public IActionResult Put(Guid serviceId, string version, [FromBody] ServiceInstanceDto info)
         {
             var added = _registryService.AddInstance(serviceId, version, info);
@@ -34,6 +35,7 @@ namespace Net.SDS.ServiceDiscovery.API.Controllers
         }
 
         [HttpDelete("{serviceId:guid}/{version}/{url}")]
+        [Produces(typeof(ServiceInstanceDto))]
         public IActionResult Delete(Guid serviceId, string version, string url)
         {
             var deleted = _registryService.DeleteInstances(serviceId, version, url);
