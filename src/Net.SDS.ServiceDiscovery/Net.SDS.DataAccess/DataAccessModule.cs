@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Net.SDS.ServiceDiscovery.Abstractions.Repositories;
 
 namespace Net.SDS.ServiceDiscovery.DataAccess
 {
@@ -12,12 +13,26 @@ namespace Net.SDS.ServiceDiscovery.DataAccess
 
             if (InMemoryStub)
             {
-                builder.ConfigureInMemoryStub();
+                ConfigureInMemoryStub(builder);
             }
             else
             {
-                builder.ConfigureMongoDB();
+                ConfigureMongoDB(builder);
             }
+        }
+
+        internal static void ConfigureMongoDB(ContainerBuilder builder)
+        {
+            builder.RegisterType<MongoDB.ServiceInstanceRepository>()
+                   .As<IServiceInstanceRepository>()
+                   .SingleInstance();
+        }
+
+        internal static void ConfigureInMemoryStub(ContainerBuilder builder)
+        {
+            builder.RegisterType<InMemoryStub.ServiceInstanceRepository>()
+                   .As<IServiceInstanceRepository>()
+                   .SingleInstance();
         }
     }
 
