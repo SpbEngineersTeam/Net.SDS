@@ -6,3 +6,9 @@ services:
     build:
       context: ./Net.SDS.API
       dockerfile: Dockerfile
+
+  net.sds.healthcheck.host:
+    image: net.sds.healthcheck.host
+    build:
+      context: ./Net.SDS.HealthCheck.Host
+      dockerfile: Dockerfile
