@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,5 +25,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Net.SDS.Registry.Core.Abstractions\Net.SDS.Registry.Core.Abstractions.csproj" />
     <ProjectReference Include="..\Net.SDS.Registry.CompositionRoot\Net.SDS.Registry.CompositionRoot.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove=".dockerignore" />
   </ItemGroup>
 </Project>

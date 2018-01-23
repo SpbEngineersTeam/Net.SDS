@@ -3,4 +3,4 @@ ARG source
 WORKDIR /app
 EXPOSE 80
 COPY ${source:-obj/Docker/publish} .
-ENTRYPOINT ["dotnet", "Net.SDS.API.dll"]
+ENTRYPOINT ["dotnet", "Net.SDS.Registry.API.dll"]

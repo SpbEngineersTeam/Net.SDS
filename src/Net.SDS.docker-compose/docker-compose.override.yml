@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  net.sds.api:
+  net.sds.registry.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:

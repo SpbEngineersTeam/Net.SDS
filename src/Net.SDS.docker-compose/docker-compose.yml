@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  net.sds.healthcheck.host:
+    image: net.sds.healthcheck.host
+    build:
+      context: ../Net.SDS.HealthCheck/Net.SDS.HealthCheck.Host
+      dockerfile: Dockerfile
+
+  net.sds.registry.api:
+    image: net.sds.registry.api
+    build:
+      context: ../Net.SDS.Registry/Net.SDS.Registry.API
+      dockerfile: Dockerfile

@@ -3,10 +3,10 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.0</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>{8948B2C5-7902-4E67-A40B-787BAA6A2561}</ProjectGuid>
+    <ProjectGuid>{8896FE29-A17E-473A-8E51-AEA89F89ABA0}</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>net.sds.api</DockerServiceName>
+    <DockerServiceName>net.sds.registry.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.ci.build.yml" />

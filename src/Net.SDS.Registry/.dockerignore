@@ -1,0 +1,14 @@
+Net.SDS.Registry.API
+Net.SDS.Registry.CompositionRoot
+Net.SDS.Registry.Core.Abstractions
+Net.SDS.Registry.Core.RegistryService
+Net.SDS.Registry.DataAccess
+Net.SDS.Registry.DataAccess.Abstractions
+Tests
+Net.SDS.Registry.API
+Net.SDS.Registry.CompositionRoot
+Net.SDS.Registry.Core.Abstractions
+Net.SDS.Registry.Core.RegistryService
+Net.SDS.Registry.DataAccess
+Net.SDS.Registry.DataAccess.Abstractions
+Tests
