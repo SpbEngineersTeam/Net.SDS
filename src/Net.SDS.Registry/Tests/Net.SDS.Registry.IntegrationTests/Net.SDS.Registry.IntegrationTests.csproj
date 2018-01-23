@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Net.SDS.API\Net.SDS.API.csproj" />
+    <ProjectReference Include="..\..\Net.SDS.Registry.API\Net.SDS.Registry.API.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ServiceInstanceController\" />

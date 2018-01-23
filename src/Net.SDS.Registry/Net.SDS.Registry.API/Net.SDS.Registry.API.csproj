@@ -23,7 +23,7 @@
     <Compile Remove="Controllers\ValuesController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Net.SDS.Core.Abstractions\Net.SDS.Core.Abstractions.csproj" />
-    <ProjectReference Include="..\Net.SDS.CompositionRoot\Net.SDS.CompositionRoot.csproj" />
+    <ProjectReference Include="..\Net.SDS.Registry.Core.Abstractions\Net.SDS.Registry.Core.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.SDS.Registry.CompositionRoot\Net.SDS.Registry.CompositionRoot.csproj" />
   </ItemGroup>
 </Project>
