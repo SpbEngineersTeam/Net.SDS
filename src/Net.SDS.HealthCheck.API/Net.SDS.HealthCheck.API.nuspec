@@ -17,8 +17,4 @@
         <files include="cs/**/*.*" buildAction="Compile" />
     </contentFiles>    
   </metadata>
-
-  <files>
-    <file src="*.cs" target="contentFiles/cs/any/Controllers" />
-  </files>
 </package>

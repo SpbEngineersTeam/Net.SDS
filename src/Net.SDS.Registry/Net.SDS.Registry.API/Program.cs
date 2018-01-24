@@ -15,6 +15,7 @@ namespace Net.SDS.ServiceDiscovery
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                    .ConfigureServices(services => services.AddAutofac())
+              //     .ConfigureServices(services => services.AddNetSds())
                    .UseStartup<Startup>()
                    .Build();
     }
