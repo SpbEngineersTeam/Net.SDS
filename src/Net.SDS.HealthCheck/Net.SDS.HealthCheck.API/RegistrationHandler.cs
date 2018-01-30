@@ -1,26 +1,52 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace Service.A
 {
     class RegistrationHandler
     {
-        readonly string registryHostUri;
-        readonly RegistrationInfoBase regInfo;
+        private readonly Uri _serviceRegistryUrl;
+        private readonly Guid _serviceId;
+        private readonly string _version;
+        private readonly Uri _serviceUrl;
 
-        public RegistrationHandler(string registryHostUri, RegistrationInfoBase regInfo)
+        public RegistrationHandler(Uri serviceRegistryUrl, Guid serviceId,
+                                   string version, Uri serviceUrl)
         {
-            this.registryHostUri = registryHostUri;
-            this.regInfo = regInfo;
+            _serviceRegistryUrl = serviceRegistryUrl;
+            _serviceId = serviceId;
+            _version = version;
+            _serviceUrl = serviceUrl;
         }
 
-        public void Register()
+        internal void Register()
         {
-            var uri = $"{registryHostUri}/api/service-instance/{regInfo.ServiceId}/{regInfo.ServiceUri}";
-           
+            //todo: http and https
+            var uri = $"http://{_serviceRegistryUrl}/api/service-instance/{_serviceId}/{_version}";
+
             using (var client = new HttpClient())
             {
-                var unused = client.PostAsync(uri, null).Result;
+                var serviceInfo = new ServiceInstanceDto()
+                {
+                    Url = _serviceUrl.ToString()
+                };
+                var serviceInfoJson = JsonConvert.SerializeObject(serviceInfo);
+
+                try
+                {
+                    var unused = client.PutAsync(uri, new StringContent(serviceInfoJson)).Result;
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
+    }
+
+    public class ServiceInstanceDto
+    {
+        public string Url { get; set; }
     }
 }

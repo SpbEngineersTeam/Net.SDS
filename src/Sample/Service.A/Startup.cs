@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Service.A
 {
@@ -23,7 +21,18 @@ namespace Service.A
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHeathCheckApi();
+            services.AddHeathCheck(option =>
+            {
+                //todo: to Attribute of startup class
+                option.ServiceId = Guid.Parse("85e3c269-28a5-494d-a90e-b2ba062648f4");
+                //todo: to config
+                option.ServiceRegistryUrl = "localhost:5000";
+                //todo: to config
+                option.ServiceUrl = "localhost:7001";
+                option.ServiceVersion = "0.0.1.0";
+                option.ServiceName = GetType().Assembly.GetName().Name;
+            });
+
             services.AddMvc();
         }
 
@@ -35,7 +44,7 @@ namespace Service.A
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHealthCheck();
+            app.UseHealthCheckApi();
             app.UseMvc();
         }
     }

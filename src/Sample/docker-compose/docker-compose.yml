@@ -12,21 +12,29 @@ services:
     build:
       context: ../../Net.SDS.Registry/Net.SDS.Registry.API
       dockerfile: Dockerfile
+    ports:
+     - "5000:80"
 
   sample.service.a:
     image: sample.service.a
     build:
       context: ../../Sample/Service.A
       dockerfile: Dockerfile
+    ports:
+     - "7001:80"
 
   sample.service.b:
     image: sample.service.b
     build:
       context: ../../Sample/Service.B
       dockerfile: Dockerfile
+    ports:
+     - "7002:80"
 
   sample.service.c:
     image: sample.service.c
     build:
       context: ../../Sample/Service.C
       dockerfile: Dockerfile
+    ports:
+     - "7003:80"

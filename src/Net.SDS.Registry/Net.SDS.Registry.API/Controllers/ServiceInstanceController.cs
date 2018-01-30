@@ -29,6 +29,11 @@ namespace Net.SDS.ServiceDiscovery.API.Controllers
         [Produces(typeof(ServiceInstanceDto))]
         public IActionResult Put(Guid serviceId, string version, [FromBody] ServiceInstanceDto info)
         {
+            if (string.IsNullOrWhiteSpace(version))
+            {
+                return BadRequest("Version can]t be null or empty");
+            }
+
             var added = _registryService.AddInstance(serviceId, version, info);
 
             return CreatedAtAction(nameof(GetUrls), added);

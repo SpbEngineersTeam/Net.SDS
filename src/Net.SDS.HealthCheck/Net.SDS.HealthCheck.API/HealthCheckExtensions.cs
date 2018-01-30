@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,15 +8,23 @@ namespace Service.A
 {
     public static class HealthCheckExtensions
     {
-        public static void AddHeathCheckApi(this IServiceCollection services, RegistrationInfoBase serviceInfo)
+        public static void AddHeathCheck(this IServiceCollection services, Action<HealthCheckOptions> optionsBuilder)
         {
-            services.AddSingleton((IServiceProvider serviceProvider) =>
-            {
-                var counfig = (IConfiguration)serviceProvider.GetService(typeof(IConfiguration));
-                var connString = counfig.GetConnectionString("NetSDS");
-                new RegistrationHandler(connString, serviceInfo).Register();
-                return (IHealthInfoAccessor)serviceProvider.GetRequiredService(typeof(HealthInfoAccessor));
-            });
+            var options = new HealthCheckOptions();
+            optionsBuilder(options);
+            var serviceRegistryUrl = new Uri(options.ServiceRegistryUrl);
+            var serviceUrl = new Uri(options.ServiceUrl);
+            var registrationHandler = new RegistrationHandler(
+                serviceRegistryUrl,
+                options.ServiceId,
+                options.ServiceVersion,
+                serviceUrl);
+            registrationHandler.Register();
+        }
+
+        public static IApplicationBuilder UseHealthCheckApi(this IApplicationBuilder builder)
+        {
+            return builder.Map("/api/health", app => app.Run(_ => Task.CompletedTask));
         }
     }
 }
