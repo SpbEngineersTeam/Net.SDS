@@ -27,6 +27,7 @@ namespace Net.SDS.HeathCheck.Service
 			
 			_receivingTask = new Task(()=>Resive(token), token, TaskCreationOptions.LongRunning);
 			_checkingTask = new Task(()=>Process(token), token, TaskCreationOptions.LongRunning);
+			_statTask = new Task(()=>ShowStat(token), token, TaskCreationOptions.LongRunning);
 		}
 
 		/// <summary>
@@ -35,6 +36,8 @@ namespace Net.SDS.HeathCheck.Service
 		public void Start()
 		{
 			_receivingTask.Start();
+			_checkingTask.Start();
+			_statTask.Start();
 		}
 
 		/// <summary>
@@ -45,24 +48,34 @@ namespace Net.SDS.HeathCheck.Service
 			_cancellationTokenSource.Cancel();
 		}
 
+		private async void ShowStat(CancellationToken token)
+		{
+			while (!token.IsCancellationRequested){
+				await Task.Delay(StatTimeout, token);
+
+				Console.WriteLine($"------------ Queue.Count: {_checkedServiceQueue.Count}");
+			}
+		}
+
 		private async void Process(CancellationToken token)
 		{
 			while (!token.IsCancellationRequested) {
 				if (!_checkedServiceQueue.TryDequeue(out ServiceDto serviceDto)) {
-					await Task.Delay(_serviceCheckPeriod);
+					await Task.Delay(ServiceCheckPeriod, token);
+					continue;
 				}
 
-				Task.Run(()=> CheckService(serviceDto));
+				FireAndForget(()=> CheckService(serviceDto), token);
 			}
 		}
 
 		private async void Resive(CancellationToken token)
 		{
 			while (!token.IsCancellationRequested) {
-				var services = await _serviceRegistryClient.GetServiceDtoOlderThanAsync(_serviceCheckPeriod);
+				var services = await _serviceRegistryClient.GetServiceDtoOlderThanAsync(ServiceCheckPeriod);
 
 				if (!services.Any()) {
-					await Task.Delay(_serviceCheckPeriod);
+					await Task.Delay(ServiceCheckPeriod, token);
 					continue;
 				}
 
@@ -76,20 +89,29 @@ namespace Net.SDS.HeathCheck.Service
 		{
 			var code = await _webRequester.CheckAsync(serviceDto.Url);
 
-			if (code == HttpStatusCode.OK) {
+			if (code == HttpStatusCode.OK)
+			{
 				_serviceRegistryClient.UpdateOkServiceAsync(serviceDto);
 			}
-			else {
+			else
+			{
 				_serviceRegistryClient.DeleteServiceAsync(serviceDto);
 			}
 		}
 
-		private const int _serviceCheckPeriod = 1000; //1 s.
+		private static async void FireAndForget(Action action, CancellationToken token)
+		{
+			await Task.Run(action, token);
+		}
+
+		private const int ServiceCheckPeriod = 1000; //1 s.
+		private const int StatTimeout = 5000; // 5 s.
 		private readonly IServiceRegistryClient _serviceRegistryClient;
 		private readonly IWebRequester _webRequester;
 		private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 		private readonly Task _receivingTask;
 		private readonly Task _checkingTask;
-		private ConcurrentQueue<ServiceDto> _checkedServiceQueue = new ConcurrentQueue<ServiceDto>();
+		private readonly Task _statTask;
+		private readonly ConcurrentQueue<ServiceDto> _checkedServiceQueue = new ConcurrentQueue<ServiceDto>();
 	}
 }

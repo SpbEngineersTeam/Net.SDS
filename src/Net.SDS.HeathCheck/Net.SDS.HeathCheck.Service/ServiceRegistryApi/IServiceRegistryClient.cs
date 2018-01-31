@@ -20,13 +20,13 @@ namespace Net.SDS.HeathCheck.Service.ServiceRegistryApi
 		/// </summary>
 		/// <param name="serviceDto">Данные идентифицирующие доступный сервис.</param>
 		/// <returns>Пустая задача.</returns>
-		Task UpdateOkServiceAsync(ServiceDto serviceDto);
+		void UpdateOkServiceAsync(ServiceDto serviceDto);
 
 		/// <summary>
 		/// Помечает сервис, в реестре сервисов, как недоступный.
 		/// </summary>
 		/// <param name="serviceDto">Данные идентифицирующие доступный сервис.</param>
 		/// <returns>Пустая задача.</returns>
-		Task DeleteServiceAsync(ServiceDto serviceDto);
+		void DeleteServiceAsync(ServiceDto serviceDto);
 	}
 }

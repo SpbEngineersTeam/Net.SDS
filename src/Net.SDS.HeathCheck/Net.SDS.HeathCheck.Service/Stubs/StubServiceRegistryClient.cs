@@ -17,23 +17,22 @@ namespace Net.SDS.HeathCheck.Service.Stubs
 			_serviceDtos = serviceDtos;
 		}
 
-		public Task DeleteServiceAsync(ServiceDto serviceDto)
+		public async void DeleteServiceAsync(ServiceDto serviceDto)
 		{
 			Console.WriteLine($"DELETE {serviceDto}.");
-			return Task.Delay(_rnd.Next(2000));
+			await Task.Delay(_rnd.Next(2000));
 		}
 
 		public async Task<IReadOnlyCollection<ServiceDto>> GetServiceDtoOlderThanAsync(int ms)
 		{
 			await Task.Delay(_rnd.Next(2000));
-
 			return _serviceDtos;
 		}
 
-		public Task UpdateOkServiceAsync(ServiceDto serviceDto)
+		public async void UpdateOkServiceAsync(ServiceDto serviceDto)
 		{
 			Console.WriteLine($"UPDATE {serviceDto}.");
-			return Task.Delay(_rnd.Next(2000));
+			await Task.Delay(_rnd.Next(2000));
 		}
 	}
 }

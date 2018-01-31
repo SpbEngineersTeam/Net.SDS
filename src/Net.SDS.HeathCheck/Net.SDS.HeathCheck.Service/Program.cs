@@ -2,15 +2,14 @@
 using Net.SDS.HeathCheck.Service.Stubs;
 using System;
 using System.Linq;
-using System.Threading;
 
 namespace Net.SDS.HeathCheck.Service
 {
-	class Program
+	public class Program
 	{
-		static void Main(string[] args)
+		public static void Main()
 		{
-			var services = new ServiceDto[] {
+			var services = new [] {
 					new ServiceDto("1", "x_1"),
 					new ServiceDto("2", "x_2"),
 					new ServiceDto("3", "x_3"),
@@ -26,12 +25,10 @@ namespace Net.SDS.HeathCheck.Service
 			Console.WriteLine("Start.");
 			service.Start();
 
-			Thread.Sleep(TimeSpan.FromMinutes(1));
+			Console.ReadKey();
 
 			service.Stop();
-
 			Console.WriteLine("Completed.");
-			Console.ReadKey();
 		}
 	}
 }
