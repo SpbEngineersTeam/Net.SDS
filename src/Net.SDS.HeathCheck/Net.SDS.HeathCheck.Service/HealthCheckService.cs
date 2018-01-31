@@ -116,8 +116,7 @@ namespace Net.SDS.HeathCheck.Service
 			
 			if (code == HttpStatusCode.OK) {
 				_serviceRegistryClient.UpdateOkServiceAsync(serviceDto);
-			}
-			else {
+			} else {
 				_serviceRegistryClient.DeleteServiceAsync(serviceDto);
 			}
 		}

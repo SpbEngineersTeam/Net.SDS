@@ -10,8 +10,6 @@ namespace Net.SDS.HeathCheck.Service.Stubs
 	/// </summary>
 	public sealed class StubServiceRegistryClient : IServiceRegistryClient
 	{
-		private readonly Random _rnd = new Random();
-		private readonly IReadOnlyCollection<ServiceDto> _serviceDtos;
 		public StubServiceRegistryClient(IReadOnlyCollection<ServiceDto> serviceDtos)
 		{
 			_serviceDtos = serviceDtos;
@@ -34,5 +32,8 @@ namespace Net.SDS.HeathCheck.Service.Stubs
 			Console.WriteLine($"UPDATE {serviceDto}.");
 			await Task.Delay(_rnd.Next(2000));
 		}
+
+		private readonly Random _rnd = new Random();
+		private readonly IReadOnlyCollection<ServiceDto> _serviceDtos;
 	}
 }
