@@ -9,7 +9,7 @@ namespace Net.SDS.HeathCheck.Service
 	{
 		public static void Main()
 		{
-			var services = new [] {
+			var services = new[] {
 					new ServiceDto("1", "x_1"),
 					new ServiceDto("2", "x_2"),
 					new ServiceDto("3", "x_3"),
@@ -20,15 +20,16 @@ namespace Net.SDS.HeathCheck.Service
 			var stubWebReq = new StubWebRequester(services.Take(3).Select(s => s.Url));
 			var stubSrClient = new StubServiceRegistryClient(services);
 
-			var service = new HealthCheckService(stubSrClient, stubWebReq);
+			using (var service = new HealthCheckService(stubSrClient, stubWebReq)){
 
-			Console.WriteLine("Start.");
-			service.Start();
+				Console.WriteLine("Start.");
+				service.Start();
 
-			Console.ReadKey();
+				Console.ReadKey();
 
-			service.Stop();
-			Console.WriteLine("Completed.");
+				service.Stop();
+				Console.WriteLine("Completed.");
+			}
 		}
 	}
 }

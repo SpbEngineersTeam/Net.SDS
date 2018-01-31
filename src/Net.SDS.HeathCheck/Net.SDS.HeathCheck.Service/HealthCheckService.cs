@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace Net.SDS.HeathCheck.Service
 {
+	/// <inheritdoc />
 	/// <summary>
 	/// Класс сервиса проверки доступности сервисов.
 	/// </summary>
-	public sealed class HealthCheckService
+	public sealed class HealthCheckService: IDisposable
 	{
 		/// <summary>
 		/// Создает новый экземпляр класса.
@@ -24,7 +25,7 @@ namespace Net.SDS.HeathCheck.Service
 			_webRequester = webRequester ?? throw new ArgumentNullException(nameof(webRequester));
 
 			var token = _cancellationTokenSource.Token;
-			
+
 			_receivingTask = new Task(()=>Resive(token), token, TaskCreationOptions.LongRunning);
 			_checkingTask = new Task(()=>Process(token), token, TaskCreationOptions.LongRunning);
 			_statTask = new Task(()=>ShowStat(token), token, TaskCreationOptions.LongRunning);
@@ -35,6 +36,10 @@ namespace Net.SDS.HeathCheck.Service
 		/// </summary>
 		public void Start()
 		{
+			if (_disposed){
+				throw new ObjectDisposedException(string.Empty);
+			}
+
 			_receivingTask.Start();
 			_checkingTask.Start();
 			_statTask.Start();
@@ -45,27 +50,47 @@ namespace Net.SDS.HeathCheck.Service
 		/// </summary>
 		public void Stop()
 		{
+			if (_disposed){
+				throw new ObjectDisposedException(string.Empty);
+			}
+
 			_cancellationTokenSource.Cancel();
 		}
 
+		/// <inheritdoc />
+		/// <summary>
+		/// Реализует IDisposable.
+		/// </summary>
+		public void Dispose()
+		{
+			if (_disposed){
+				return;
+			}
+
+			_disposed = true;
+
+			if (_cancellationTokenSource != null){
+				_cancellationTokenSource.Cancel();
+				_cancellationTokenSource.Dispose();
+			}
+
+			_checkedServiceSet?.Dispose();
+		}
+		
 		private async void ShowStat(CancellationToken token)
 		{
 			while (!token.IsCancellationRequested){
 				await Task.Delay(StatTimeout, token);
 
-				Console.WriteLine($"------------ Queue.Count: {_checkedServiceQueue.Count}");
+				Console.WriteLine($"------------ Queue.Count: {_checkedServiceSet.Count}");
 			}
 		}
 
-		private async void Process(CancellationToken token)
+		private void Process(CancellationToken token)
 		{
 			while (!token.IsCancellationRequested) {
-				if (!_checkedServiceQueue.TryDequeue(out ServiceDto serviceDto)) {
-					await Task.Delay(ServiceCheckPeriod, token);
-					continue;
-				}
-
-				FireAndForget(()=> CheckService(serviceDto), token);
+				var serviceDto = _checkedServiceSet.Take();
+				CheckService(serviceDto);
 			}
 		}
 
@@ -80,7 +105,7 @@ namespace Net.SDS.HeathCheck.Service
 				}
 
 				foreach (var itr in services) {
-					_checkedServiceQueue.Enqueue(itr);
+					_checkedServiceSet.Add(itr, token);
 				}
 			}
 		}
@@ -88,20 +113,13 @@ namespace Net.SDS.HeathCheck.Service
 		private async void CheckService(ServiceDto serviceDto)
 		{
 			var code = await _webRequester.CheckAsync(serviceDto.Url);
-
-			if (code == HttpStatusCode.OK)
-			{
+			
+			if (code == HttpStatusCode.OK) {
 				_serviceRegistryClient.UpdateOkServiceAsync(serviceDto);
 			}
-			else
-			{
+			else {
 				_serviceRegistryClient.DeleteServiceAsync(serviceDto);
 			}
-		}
-
-		private static async void FireAndForget(Action action, CancellationToken token)
-		{
-			await Task.Run(action, token);
 		}
 
 		private const int ServiceCheckPeriod = 1000; //1 s.
@@ -112,6 +130,7 @@ namespace Net.SDS.HeathCheck.Service
 		private readonly Task _receivingTask;
 		private readonly Task _checkingTask;
 		private readonly Task _statTask;
-		private readonly ConcurrentQueue<ServiceDto> _checkedServiceQueue = new ConcurrentQueue<ServiceDto>();
+		private readonly BlockingCollection<ServiceDto> _checkedServiceSet = new BlockingCollection<ServiceDto>();
+		private bool _disposed;
 	}
 }
