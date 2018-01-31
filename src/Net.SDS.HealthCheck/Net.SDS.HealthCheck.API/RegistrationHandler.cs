@@ -33,14 +33,9 @@ namespace Service.A
                 };
                 var serviceInfoJson = JsonConvert.SerializeObject(serviceInfo);
 
-                try
-                {
-                    var unused = client.PutAsync(uri, new StringContent(serviceInfoJson)).Result;
-                }
-                catch (Exception ex)
-                {
 
-                }
+                    var unused = client.PutAsync(uri, new StringContent(serviceInfoJson)).Result;
+              
             }
         }
     }

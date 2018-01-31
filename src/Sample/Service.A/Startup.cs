@@ -26,9 +26,9 @@ namespace Service.A
                 //todo: to Attribute of startup class
                 option.ServiceId = Guid.Parse("85e3c269-28a5-494d-a90e-b2ba062648f4");
                 //todo: to config
-                option.ServiceRegistryUrl = "localhost:5000";
+                option.ServiceRegistryUrl = "net.sds.registry.api:80";
                 //todo: to config
-                option.ServiceUrl = "localhost:7001";
+                option.ServiceUrl = "sample.service.a:80";
                 option.ServiceVersion = "0.0.1.0";
                 option.ServiceName = GetType().Assembly.GetName().Name;
             });
