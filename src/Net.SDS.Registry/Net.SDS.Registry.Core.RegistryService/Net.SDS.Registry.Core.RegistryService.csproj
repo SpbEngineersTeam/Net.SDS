@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Net.SDS.Registry.Core.Abstractions\Net.SDS.Registry.Core.Abstractions.csproj" />
+    <ProjectReference Include="..\Net.SDS.Registry.DataAccess.Abstractions\Net.SDS.Registry.DataAccess.Abstractions.csproj" />
+  </ItemGroup>
+</Project>
