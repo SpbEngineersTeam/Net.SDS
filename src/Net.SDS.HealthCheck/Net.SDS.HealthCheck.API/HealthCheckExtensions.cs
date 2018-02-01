@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.A
+namespace Net.SDS.HealthCheck.API
 {
     public static class HealthCheckExtensions
     {
@@ -14,7 +14,7 @@ namespace Service.A
             optionsBuilder(options);
             var serviceRegistryUrl = new Uri(options.ServiceRegistryUrl);
             var serviceUrl = new Uri(options.ServiceUrl);
-            var registrationHandler = new RegistrationHandler(
+            var registrationHandler = new HeartBeat(
                 serviceRegistryUrl,
                 options.ServiceId,
                 options.ServiceVersion,
@@ -27,7 +27,7 @@ namespace Service.A
 
         public static IApplicationBuilder UseHealthCheckApi(this IApplicationBuilder builder)
         {
-            return builder.Map("/api/health", app => app.Run(_ => Task.CompletedTask));
+            return builder.Map("/api/health-check", app => app.Run(_ => Task.CompletedTask));
         }
     }
 }
