@@ -18,21 +18,27 @@ namespace Net.SDS.HealthCheck.API
 		/// <inheritdoc />
 		public void Dispose()
 		{
-			CheckDisposed();
-			lock (_lock) { 
+			lock (_lock) {
+				if (_disposed) {
+					return;
+				}
+
 				Dispose(true);
 			}
 		}
 
 		/// <summary>
 		/// Выполняет освобождение упровляемых ресурсов.
-		/// <remarks>Не является потоко-безопасным.</remarks>
+		/// <remarks>Не является потоко-безопасным. Он вызывается в критической секции IDisposable.Dispose().</remarks>
 		/// </summary>
 		/// <param name="disposing"></param>
 		protected virtual void Dispose(bool disposing)
 		{
-			_cancellationTokenSource.Cancel();
-			_cancellationTokenSource.Dispose();
+			if (disposing) {
+				_cancellationTokenSource.Cancel();
+				_cancellationTokenSource.Dispose();
+			}
+
 			_disposed = true;
 		}
 
