@@ -1,47 +1,38 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace Service.A
 {
-    class RegistrationHandler
+    internal class RegistrationHandler : RegistrationHandlerBase
     {
-        private readonly Uri _serviceRegistryUrl;
-        private readonly Guid _serviceId;
-        private readonly string _version;
-        private readonly Uri _serviceUrl;
+        private readonly string _registrationUrl;
+        private readonly StringContent _serviceInfoContent;
 
-        public RegistrationHandler(Uri serviceRegistryUrl, Guid serviceId,
+        internal RegistrationHandler(Uri serviceRegistryUrl, Guid serviceId,
                                    string version, Uri serviceUrl)
         {
-            _serviceRegistryUrl = serviceRegistryUrl;
-            _serviceId = serviceId;
-            _version = version;
-            _serviceUrl = serviceUrl;
-        }
+            //todo: http, https?
+            _registrationUrl = $"http://{serviceRegistryUrl}/api/service-instance/{serviceId}/{version}";
 
-        internal void Register()
-        {
-            //todo: http and https
-            var uri = $"http://{_serviceRegistryUrl}/api/service-instance/{_serviceId}/{_version}";
-
-            using (var client = new HttpClient())
+            var serviceInstanceDto = new ServiceInstanceDto()
             {
-                var serviceInfo = new ServiceInstanceDto()
-                {
-                    Url = _serviceUrl.ToString()
-                };
-                var serviceInfoJson = JsonConvert.SerializeObject(serviceInfo);
+                Url = serviceUrl.ToString()
+            };
 
+            var serviceInfoJson = JsonConvert.SerializeObject(serviceInstanceDto);
 
-                    var unused = client.PutAsync(uri, new StringContent(serviceInfoJson)).Result;
-              
+            _serviceInfoContent = new StringContent(serviceInfoJson, Encoding.UTF8, "application/json");
+
+        }
+        protected override void Register()
+        {
+            using (var client = new HttpClient())//TODO: переиспользовать подключение (private static field)
+            {
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")); //TODO: в статический конструктор
+                var unused = client.PutAsync(_registrationUrl, _serviceInfoContent).Result;
             }
         }
-    }
-
-    public class ServiceInstanceDto
-    {
-        public string Url { get; set; }
     }
 }

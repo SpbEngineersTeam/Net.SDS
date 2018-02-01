@@ -13,7 +13,7 @@ services:
       context: ../../Net.SDS.Registry/Net.SDS.Registry.API
       dockerfile: Dockerfile
     ports:
-     - "5000:80"
+     - "32789:80"
 
   sample.service.a:
     image: sample.service.a
@@ -22,6 +22,8 @@ services:
       dockerfile: Dockerfile
     ports:
      - "7001:80"
+    depends_on:
+      - "net.sds.registry.api"
 
   sample.service.b:
     image: sample.service.b
@@ -30,6 +32,8 @@ services:
       dockerfile: Dockerfile
     ports:
      - "7002:80"
+    depends_on:
+      - "net.sds.registry.api"
 
   sample.service.c:
     image: sample.service.c
@@ -38,3 +42,5 @@ services:
       dockerfile: Dockerfile
     ports:
      - "7003:80"
+    depends_on:
+      - "net.sds.registry.api"

@@ -19,7 +19,10 @@ namespace Service.A
                 options.ServiceId,
                 options.ServiceVersion,
                 serviceUrl);
-            registrationHandler.Register();
+            
+            services.AddSingleton(registrationHandler);
+
+            registrationHandler.RunRegistrationLoop();
         }
 
         public static IApplicationBuilder UseHealthCheckApi(this IApplicationBuilder builder)
