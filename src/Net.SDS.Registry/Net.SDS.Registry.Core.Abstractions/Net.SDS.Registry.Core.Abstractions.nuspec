@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Net.SDS.Registry.Core.Abstractions</id>
+    <version>0.1.0</version>
+
+    <authors>Andrey Goncharov, Yury Vlasov, Alexei Kondratyuk</authors>
+
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/SpbEngineersTeam/Net.SDS</projectUrl>
+
+    <iconUrl>https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/NuGet_project_logo.svg/220px-NuGet_project_logo.svg.png</iconUrl>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <description>Набор абстракций для реестра сервисов.</description>
+  </metadata>
+</package>
