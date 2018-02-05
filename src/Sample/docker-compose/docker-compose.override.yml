@@ -4,5 +4,3 @@ services:
   net.sds.registry.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"

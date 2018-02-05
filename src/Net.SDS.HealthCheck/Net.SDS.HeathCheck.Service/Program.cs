@@ -25,7 +25,7 @@ namespace Net.SDS.HeathCheck.Service
 				Console.WriteLine("Start.");
 				service.Start();
 
-				Console.ReadKey();
+				Console.Read();
 
 				service.Stop();
 				Console.WriteLine("Completed.");

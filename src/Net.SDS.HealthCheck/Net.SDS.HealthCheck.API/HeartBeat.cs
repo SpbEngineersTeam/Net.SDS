@@ -27,13 +27,12 @@ namespace Net.SDS.HealthCheck.API
 				MediaType);
 
 			_client = new HttpClient();
-
+            _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue(MediaType));
 		}
 
 		/// <inheritdoc />
 		protected override async Task Beat(CancellationToken token)
 		{
-			_client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue(MediaType));
 			await _client.PutAsync(_registrationUrl, _serviceInfoContent, token);
 		}
 
@@ -47,6 +46,6 @@ namespace Net.SDS.HealthCheck.API
 		private readonly HttpClient _client;
 		private readonly string _registrationUrl;
 		private readonly StringContent _serviceInfoContent;
-		private const string  MediaType = "application/json";
+		private const string MediaType = "application/json";
 	}
 }

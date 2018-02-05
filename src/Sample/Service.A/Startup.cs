@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Net.SDS.HealthCheck.API;
+         
 namespace Service.A
 {
     public class Startup
